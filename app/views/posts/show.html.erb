@@ -1,0 +1,20 @@
+<p style="color: green"><%= notice %></p>
+
+<div>
+  <%= link_to "Back to posts", posts_path %>
+  <% if user_signed_in? %>
+    <% if current_user.id == @post.user_id %>
+      <%= link_to "Edit this post", edit_post_path(@post) %> |     
+      <% if current_user.role == 'admin' %>
+        <%= button_to "Destroy this post", @post, method: :delete, data: { confirm: "Esta seguro que desea eliminar el post?" } %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <h1>Título: <%= @post.title %></h1>
+  <p>Descripción: <%= @post.description %></p>
+  <p>Autor: <%= @post.user.email %></p>
+  <p>Imagen: <%= @post.image %></p>
+
+</div>
+
+
